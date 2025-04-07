@@ -37,6 +37,6 @@ export class SidebarComponent {
   }
 
   get isWorker(): boolean {
-    return this.authService.isWorker();
+    return this.authService.isAdmin();
   }
 }
