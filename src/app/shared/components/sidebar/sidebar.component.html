@@ -2,9 +2,9 @@
   <div id="app-sidebar-1"
        class="surface-section hidden lg:block flex-shrink-0 absolute lg:sticky lg:top-0 left-0 top-0 z-1 border-right-1 surface-border select-none h-screen"
        style="width:280px">
-    <div class="flex flex-column h-full">
+    <div class="flex flex-column h-full py-5 px-3">
       <div class="flex flex-column align-items-center flex-shrink-0" style="height:60px">
-        <img src="https://i.postimg.cc/CxXL1Ffc/image.png" alt="Image" height="60" class="border-circle">
+        <img src="https://i.postimg.cc/tT21YrtB/image.png" alt="Image" height="30">
       </div>
       <div class="flex-grow-1 overflow-y-auto">
         <ul class="list-none p-2 m-0">
@@ -12,63 +12,99 @@
             <div pRipple class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer"
                  pStyleClass="@next" enterClass="hidden" enterActiveClass="slidedown" leaveToClass="hidden"
                  leaveActiveClass="slideup">
-              <span class="font-medium text-primary">TODOS</span>
+              <span class="font-medium text-primary">ALL</span>
               <i class="pi pi-chevron-down"></i>
             </div>
             <ul class="list-none p-0 m-0 overflow-hidden">
-              <li routerLink="/mdjcc/documents">
+              <li routerLink="/automovil-unite/vehicles">
                 <a pRipple
                    class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
-                  <i class="pi pi-book mr-2"></i>
-                  <span class="font-medium">Todos</span>
+                  <i class="pi pi-car mr-2"></i>
+                  <span class="font-medium">Vehicles</span>
                 </a>
               </li>
-              <li routerLink="/mdjcc/search">
+              <li routerLink="/automovil-unite/vehicles">
                 <a pRipple
                    class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
                   <i class="pi pi-search mr-2"></i>
-                  <span class="font-medium">Buscar</span>
+                  <span class="font-medium">Search</span>
                 </a>
               </li>
             </ul>
           </li>
         </ul>
-        <div *ngIf="isWorker || isAdmin">
+        <div>
           <ul class="list-none p-2 m-0">
             <li>
               <div pRipple class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer"
                    pStyleClass="@next" enterClass="hidden" enterActiveClass="slidedown" leaveToClass="hidden"
                    leaveActiveClass="slideup">
-                <span class="font-medium text-primary">INFORMATICA</span>
+                <span class="font-medium text-primary">IT</span>
                 <i class="pi pi-chevron-down"></i>
               </div>
               <ul class="list-none p-0 m-0 overflow-hidden">
-                <li routerLink="/mdjcc/upload">
+                <li routerLink="/automovil-unite/notifications">
+                  <a pRipple
+                     class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
+                    <i class="pi pi-bell mr-2"></i>
+                    <span class="font-medium">Notifications</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list-none p-0 m-0 overflow-hidden">
+                <li routerLink="/automovil-unite/reviews">
                   <a pRipple
                      class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
                     <i class="pi pi-cloud-upload mr-2"></i>
-                    <span class="font-medium">Subir</span>
+                    <span class="font-medium">Reviews</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list-none p-0 m-0 overflow-hidden">
+                <li routerLink="/automovil-unite/reports">
+                  <a pRipple
+                     class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
+                    <i class="pi pi-chart-line mr-2"></i>
+                    <span class="font-medium">Reports</span>
                   </a>
                 </li>
               </ul>
             </li>
           </ul>
         </div>
-        <div *ngIf="isAdmin">
+        <div>
           <ul class="list-none p-2 m-0">
             <li>
               <div pRipple class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer"
                    pStyleClass="@next" enterClass="hidden" enterActiveClass="slidedown" leaveToClass="hidden"
                    leaveActiveClass="slideup">
-                <span class="font-medium text-primary">ADMINISTRAR</span>
+                <span class="font-medium text-primary">Profile</span>
                 <i class="pi pi-chevron-down"></i>
               </div>
               <ul class="list-none p-0 m-0 overflow-hidden">
-                <li routerLink="/mdjcc/edit">
+                <li routerLink="/automovil-unite/profile">
                   <a pRipple
                      class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
-                    <i class="pi pi-file-edit mr-2"></i>
-                    <span class="font-medium">Controlar</span>
+                    <i class="pi pi-user-edit mr-2"></i>
+                    <span class="font-medium">Personal Info</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list-none p-0 m-0 overflow-hidden">
+                <li routerLink="/automovil-unite/profile">
+                  <a pRipple
+                     class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
+                    <i class="pi pi-shield mr-2"></i>
+                    <span class="font-medium">2FA</span>
+                  </a>
+                </li>
+              </ul>
+              <ul class="list-none p-0 m-0 overflow-hidden">
+                <li routerLink="/automovil-unite/profile">
+                  <a pRipple
+                     class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors">
+                    <i class="pi pi-folder-open mr-2"></i>
+                    <span class="font-medium">Documents</span>
                   </a>
                 </li>
               </ul>
@@ -82,7 +118,7 @@
            class="m-3 flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors"
            (click)="logout()">
           <i class="pi pi-sign-out mr-2 text-red-900 font-bold"></i>
-          <span class="font-medium text-red-900 font-bold">Cerrar sesión</span>
+          <span class="font-medium text-red-900 font-bold">Log Out</span>
         </a>
       </div>
     </div>
@@ -99,7 +135,7 @@
         </a>
       </div>
     </div>
-    <div class="flex-auto  bg-white">
+    <div class="flex-auto bg-white">
       <router-outlet></router-outlet>
     </div>
   </div>

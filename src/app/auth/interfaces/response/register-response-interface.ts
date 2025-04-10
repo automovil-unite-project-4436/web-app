@@ -1,7 +1,5 @@
-import {UserInterface} from '../user-interface';
-
 export interface RegisterResponseInterface {
-  token: string;
-  refreshToken: string;
-  user: UserInterface
+  message: string;
+  userId: string;
+  hashedCode: number
 }

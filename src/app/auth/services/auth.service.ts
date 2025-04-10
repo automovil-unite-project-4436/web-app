@@ -17,6 +17,7 @@ import {RegisterRequestInterface} from '../interfaces/request/register-request-i
 export class AuthService {
   private readonly baseUrl: string = environment.baseUrl;
   private http = inject(HttpClient);
+
   private _authStatus = signal<AuthStatusEnum>(AuthStatusEnum.checking);
   public authStatus = computed(() => this._authStatus());
   private router = inject(Router);
@@ -29,7 +30,7 @@ export class AuthService {
   }
 
   private initializeAuthStatus(): void {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (token) {
       this._authStatus.set(AuthStatusEnum.authenticated);
       this.loadUserRole(token);
@@ -38,9 +39,9 @@ export class AuthService {
     }
   }
 
-  private loadUserRole(token: string): void {
+  private loadUserRole(accessToken: string): void {
     try {
-      const decoded: any = jwtDecode(token);
+      const decoded: any = jwtDecode(accessToken);
       if (decoded.role) {
         this._userRole.set(decoded.role as RoleEnum);
       }
@@ -49,25 +50,23 @@ export class AuthService {
     }
   }
 
-  private setAuthentication(token: string, roles: string[]): boolean {
-    if (!token) return false;
-    localStorage.setItem('token', token);
+  private setAuthentication(accessToken: string, userId: string): boolean {
+    if (!accessToken) return false;
+    localStorage.setItem('accessToken', accessToken);
     this._authStatus.set(AuthStatusEnum.authenticated);
-
-    if (roles.length > 0) {
-      this._userRole.set(roles[0] as RoleEnum);
-    }
-
     return true;
   }
+
 
   login(loginRequest: LoginRequestInterface): Observable<boolean> {
     const url = `${this.baseUrl}/auth/login`;
     return this.http.post<LoginResponseInterface>(url, loginRequest).pipe(
-      map(({token, user}) => {
-        this.setAuthentication(token, user.roles);
+      map(({ accessToken, userId }) => {
+        this.setAuthentication(accessToken, userId);
+        this.loadUserRole(accessToken); // para establecer el rol
         return true;
       }),
+
       catchError(err => throwError(() => err.error.message || 'Error inesperado al iniciar sesión'))
     );
   }
@@ -91,7 +90,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('accessToken');
     this._authStatus.set(AuthStatusEnum.notAuthenticated);
     this.sessionExpired.set(false);
     this._userRole.set(null);
@@ -99,7 +98,7 @@ export class AuthService {
   }
 
   private getTokenExpiration(): number | null {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (!token) return null;
 
     try {
@@ -110,14 +109,14 @@ export class AuthService {
     }
   }
 
-  private isTokenExpired(token: string): boolean {
+  private isTokenExpired(accessToken: string): boolean {
     const exp = this.getTokenExpiration();
     return exp ? Date.now() > exp : true;
   }
 
   private startTokenCheck() {
     setInterval(() => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('accessToken');
       if (token && this.isTokenExpired(token)) {
         this.logout();
         this.sessionExpired.set(true);

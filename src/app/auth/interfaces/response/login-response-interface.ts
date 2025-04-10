@@ -1,7 +1,6 @@
-import {UserInterface} from '../user-interface';
-
 export interface LoginResponseInterface {
-  token: string;
+  message: string;
+  accessToken: string;
   refreshToken: string;
-  user: UserInterface
+  userId: string
 }

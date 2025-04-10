@@ -37,20 +37,18 @@ export class LoginPageComponent {
   };
 
   login() {
-
     if (!this.loginRequest?.email || !this.loginRequest?.password ) {
-      Swal.fire('Error', 'Por favor completa todos los campos', 'warning');
+      Swal.fire('Missing Fields', 'Please complete all fields', 'warning');
       return;
     }
 
-    this.authService.login(this.loginRequest).subscribe(
-      {
-        next: () => this.router.navigateByUrl('/automovil-unite'),
-        error: (message) => {
-          console.log(this.loginRequest);
-          Swal.fire('Error al Iniciar Sesión', message, 'error')
-        }
+    this.authService.login(this.loginRequest).subscribe({
+      next: () => this.router.navigateByUrl('/automovil-unite'),
+      error: (message) => {
+        console.log(this.loginRequest);
+        Swal.fire('Login Error', message, 'error');
       }
-    )
+    });
   }
+
 }

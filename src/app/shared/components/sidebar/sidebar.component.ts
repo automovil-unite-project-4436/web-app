@@ -20,7 +20,6 @@ import {NgIf} from '@angular/common';
     RouterOutlet,
     RouterLink,
     ScrollPanelModule,
-    NgIf
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
@@ -36,7 +35,7 @@ export class SidebarComponent {
     return this.authService.isAdmin();
   }
 
-  get isWorker(): boolean {
-    return this.authService.isWorker();
+  get isOwner(): boolean {
+    return this.authService.isOwner();
   }
 }

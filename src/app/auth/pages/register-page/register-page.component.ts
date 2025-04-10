@@ -80,7 +80,7 @@ export class RegisterPageComponent implements OnInit {
       },
       {
         title: 'Earn Money with Your Car',
-        image: 'https://i.postimg.cc/fRNS2xfj/mercedes.png',
+        image: 'https://i.postimg.cc/vZ7wbvkc/lamboriguini.png',
         text: 'Put your vehicle to work. Register as an owner and start generating extra income.'
       }
     ];
